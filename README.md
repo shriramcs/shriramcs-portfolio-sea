@@ -57,6 +57,39 @@ If you deploy locally instead of via Actions, set the base yourself:
 GITHUB_PAGES_BASE=/your-repo-name/ npm run build
 ```
 
+## Deploy to Cloudflare Pages
+
+Cloudflare Pages serves the site from the domain root, so no `base` path configuration is needed (the default `/` in [vite.config.js](vite.config.js) is used).
+
+This repo includes [wrangler.jsonc](wrangler.jsonc) with `pages_build_output_dir` set to `./dist`. This is required so that `wrangler deploy` (used internally by Cloudflare's dashboard build system and by the `wrangler` CLI) treats the project as a Pages deployment instead of a Worker — without it, you'll hit a `Missing entry-point to Worker script` error.
+
+### Option A — Git integration (dashboard, recommended)
+
+1. Push this repo to GitHub (or GitLab).
+2. In the [Cloudflare dashboard](https://dash.cloudflare.com/), go to **Workers & Pages → Create → Pages → Connect to Git** and select this repo.
+3. Set the build configuration:
+   - **Build command**: `npm run build`
+   - **Build output directory**: `dist`
+4. Save and deploy. Cloudflare will rebuild and redeploy automatically on every push to `main`.
+
+### Option B — GitHub Actions
+
+This repo includes [.github/workflows/cloudflare-pages.yml](.github/workflows/cloudflare-pages.yml), which builds and deploys via `cloudflare/pages-action` on every push to `main`.
+
+1. Create a Cloudflare Pages project named `portfolio-sea` (via the dashboard, or it will be created automatically on first deploy).
+2. In your GitHub repo, add these secrets under **Settings → Secrets and variables → Actions**:
+   - `CLOUDFLARE_API_TOKEN` — a token with **Cloudflare Pages: Edit** permission.
+   - `CLOUDFLARE_ACCOUNT_ID` — found in the Cloudflare dashboard sidebar.
+3. Push to `main` to trigger the workflow.
+
+### Option C — Manual deploy via Wrangler CLI
+
+```bash
+npm run deploy:cloudflare
+```
+
+This builds the site and deploys the `dist/` folder using [Wrangler](https://developers.cloudflare.com/workers/wrangler/). On first run, Wrangler will prompt you to log in to Cloudflare.
+
 ## Project structure
 
 ```
