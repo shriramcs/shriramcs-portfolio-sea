@@ -1,5 +1,5 @@
 {
-  "name": "portfolio-sea",
+  "name": "shriramcs-portfolio-sea",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy:cloudflare": "npm run build && wrangler pages deploy dist --project-name=portfolio-sea"
+    "deploy:cloudflare": "npm run build && wrangler pages deploy dist --project-name=shriramcs-portfolio-sea"
   },
   "devDependencies": {
     "vite": "^5.4.0",
