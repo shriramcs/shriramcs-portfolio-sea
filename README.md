@@ -102,3 +102,8 @@ src/
     particles.js
     reveal.js
 ```
+
+
+## Credits
+
+- Idea inspiration: [Jellyfish Challenge](https://codepen.io/pkodmad/pen/KrpbGe) by [PK](https://pkodmad.com/)
