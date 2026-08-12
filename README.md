@@ -6,6 +6,9 @@ An underwater scroll-story portfolio built with vanilla JS and Vite.
 
 - [Node.js](https://nodejs.org/) 18+ and npm
 
+🌊 **Live:** [shriramcs.github.io/shriramcs-portfolio-sea](https://shriramcs.github.io/shriramcs-portfolio-sea/)
+
+
 ## Run locally
 
 ```bash
